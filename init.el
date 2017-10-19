@@ -23,6 +23,8 @@
 		       hungry-delete
 		       counsel
 		       swiper
+		       smartparens
+		       js2-mode
 		       ) "Default packages")
 (defun wxx/packages-installed-p ()
   (loop for pkg in wxx/packages
@@ -41,6 +43,12 @@
 
 ;; Enable fontify natively
 (setq org-src-fontify-natively t)
+
+;; Set org agenda default file directory
+(setq org-agenda-files '("~/org"))
+
+;; Shortcuts for org-mode
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 ;;;;;;;;;;;;;;;;;;;;; recentf ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -83,6 +91,18 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 
+;;;;;;;;;;;;;;;;;;; smartparens ;;;;;;;;;;;;;;;;;;;;;
+
+(require 'smartparens-config)
+(smartparens-global-mode t)
+
+;;;;;;;;;;;;;;;;;;;; js2-mode ;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq auto-mode-alist
+      (append
+       '(("\\.js\\'" . js2-mode))
+       auto-mode-alist))
+
 ;;;;;;;;;;;;;;;;;;;;; Common ;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Disable tool-bar
@@ -109,3 +129,19 @@
 
 ;; Enable paren-mode
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
+
+;;;;;;;;;;;;;;;;;;;;; customize-group ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-idle-delay 0)
+ '(company-minimum-prefix-length 1))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
